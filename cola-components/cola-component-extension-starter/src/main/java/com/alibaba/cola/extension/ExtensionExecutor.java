@@ -13,6 +13,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 /**
  * ExtensionExecutor
@@ -34,6 +37,40 @@ public class ExtensionExecutor extends AbstractComponentExecutor {
         C extension = locateExtension(targetClz, bizScenario);
         logger.debug("[Located Extension]: " + extension.getClass().getSimpleName());
         return extension;
+    }
+
+    @Override
+    protected <C> List<C> locateComponentMultiple(Class<C> targetClz, BizScenario context) {
+
+        C component = null;
+        try {
+            component = locateComponent(targetClz, context);
+            if (component != null) {
+                return Arrays.asList(component);
+            }
+        } catch (Exception e) {
+
+        }
+        List<C> objectList = multipleTry(new ExtensionCoordinate(targetClz.getName(), context.getUniqueIdentity()));
+        if (objectList != null) {
+            return objectList;
+        }
+
+        objectList = multipleTry(new ExtensionCoordinate(targetClz.getName(),
+                context.getIdentityWithDefaultScenario()));
+        if (objectList != null) {
+            return objectList;
+        }
+
+        objectList = multipleTry(new ExtensionCoordinate(targetClz.getName(),
+                context.getIdentityWithDefaultUseCase()));
+        if (objectList != null) {
+            return objectList;
+        }
+        String errMessage = "Can not find extension with ExtensionPoint: " +
+                targetClz + " BizScenario:" + context.getUniqueIdentity();
+        throw new ExtensionException(EXTENSION_NOT_FOUND, errMessage);
+
     }
 
     /**
@@ -105,6 +142,11 @@ public class ExtensionExecutor extends AbstractComponentExecutor {
     private <Ext> Ext defaultUseCaseTry(Class<Ext> targetClz, BizScenario bizScenario) {
         logger.debug("Third trying with " + bizScenario.getIdentityWithDefaultUseCase());
         return locate(targetClz.getName(), bizScenario.getIdentityWithDefaultUseCase());
+    }
+
+    private <Ext> List<Ext> multipleTry(ExtensionCoordinate extensionCoordinate) {
+        Map<ExtensionCoordinate, List<ExtensionPointI>> multipleRepo = extensionRepository.getExtensionMultipleRepo();
+        return (List<Ext>) multipleRepo.get(extensionCoordinate);
     }
 
     private <Ext> Ext locate(String name, String uniqueIdentity) {

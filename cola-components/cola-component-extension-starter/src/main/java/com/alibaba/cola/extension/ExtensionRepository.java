@@ -10,20 +10,26 @@ package com.alibaba.cola.extension;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
- * ExtensionRepository 
+ * ExtensionRepository
  * @author fulan.zjf 2017-11-05
  */
 @Component
 public class ExtensionRepository {
+
+    public Map<ExtensionCoordinate, List<ExtensionPointI>> getExtensionMultipleRepo() {
+        return extensionMultipleRepo;
+    }
 
     public Map<ExtensionCoordinate, ExtensionPointI> getExtensionRepo() {
         return extensionRepo;
     }
 
     private Map<ExtensionCoordinate, ExtensionPointI> extensionRepo = new HashMap<>();
+    private Map<ExtensionCoordinate, List<ExtensionPointI>> extensionMultipleRepo = new HashMap<>();
 
 
 }

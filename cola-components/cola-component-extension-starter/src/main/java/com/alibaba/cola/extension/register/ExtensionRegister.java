@@ -14,6 +14,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.ClassUtils;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * ExtensionRegister
@@ -50,6 +53,15 @@ public class ExtensionRegister {
         Extension extensionAnn = AnnotationUtils.findAnnotation(extensionClz, Extension.class);
         BizScenario bizScenario = BizScenario.valueOf(extensionAnn.bizId(), extensionAnn.useCase(), extensionAnn.scenario());
         ExtensionCoordinate extensionCoordinate = new ExtensionCoordinate(calculateExtensionPoint(extensionClz), bizScenario.getUniqueIdentity());
+
+        if (extensionAnn.multiple()) {
+            Map<ExtensionCoordinate, List<ExtensionPointI>> extensionMultipleRepo = extensionRepository.getExtensionMultipleRepo();
+            List<ExtensionPointI> extensionPointIS = extensionMultipleRepo
+                    .getOrDefault(extensionCoordinate, new ArrayList<>());
+            extensionPointIS.add(extensionObject);
+            extensionMultipleRepo.put(extensionCoordinate, extensionPointIS);
+            return;
+        }
         ExtensionPointI preVal = extensionRepository.getExtensionRepo().put(extensionCoordinate, extensionObject);
         if (preVal != null) {
             String errMessage = "Duplicate registration is not allowed for :" + extensionCoordinate;
