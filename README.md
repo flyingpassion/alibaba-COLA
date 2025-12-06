@@ -1,23 +1,23 @@
-# 🥤 COLA v4
+# 🥤 COLA v5
 
-[![Github Workflow Build Status](https://img.shields.io/github/workflow/status/alibaba/cola/CI/master?logo=github&logoColor=white)](https://github.com/alibaba/cola/actions/workflows/ci.yaml)
-[![Appveyor Build Status](https://img.shields.io/appveyor/ci/oldratlee/cola/master?logo=appveyor&logoColor=white)](https://ci.appveyor.com/project/oldratlee/cola)
-[![Maven Central](https://img.shields.io/maven-central/v/com.alibaba.cola/cola-component-dto.svg?logo=apache-maven&color=2d545e)](https://search.maven.org/search?q=g:com.alibaba.cola)
-[![GitHub release](https://img.shields.io/github/release/alibaba/COLA.svg)](https://github.com/alibaba/COLA/releases)
-[![Java support](https://img.shields.io/badge/Java-8+-green?logo=OpenJDK&logoColor=white)](https://openjdk.java.net/)
-[![License](https://img.shields.io/badge/license-LGPL%202.1-4EB1BA.svg?color=4D7A97&logo=apache)](LICENSE)
-[![GitHub Stars](https://img.shields.io/github/stars/alibaba/COLA)](https://github.com/alibaba/COLA/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/alibaba/COLA)](https://github.com/alibaba/COLA/fork)
+[![Fast CI](https://img.shields.io/github/actions/workflow/status/alibaba/cola/ci.yaml?branch=master&logo=github&logoColor=white&label=fast%20ci)](https://github.com/alibaba/cola/actions/workflows/ci.yaml)
+[![Multiply Java versions CI](https://img.shields.io/github/actions/workflow/status/alibaba/cola/ci_by_multiply_java_versions.yaml?branch=master&logo=github&logoColor=white&label=strong%20ci)](https://github.com/alibaba/cola/actions/workflows/ci_by_multiply_java_versions.yaml)
+[![License](https://img.shields.io/badge/license-LGPL--2.1-4EB1BA.svg?color=4D7A97&logo=apache)](LICENSE)
+[![Java support](https://img.shields.io/badge/Java-17+-339933?logo=OpenJDK&logoColor=white)](https://openjdk.java.net/)
+[![Maven Central](https://img.shields.io/maven-central/v/com.alibaba.cola/cola-component-dto.svg?logo=apache-maven&label=maven%20central)](https://central.sonatype.com/namespace/com.alibaba.cola)
+[![GitHub Releases](https://img.shields.io/github/release/alibaba/COLA.svg)](https://github.com/alibaba/COLA/releases)
+[![GitHub Stars](https://img.shields.io/github/stars/alibaba/COLA?style=flat)](https://github.com/alibaba/COLA/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/alibaba/COLA?style=flat)](https://github.com/alibaba/COLA/fork)
 [![user repos](https://badgen.net/github/dependents-repo/alibaba/COLA?label=user%20repos)](https://github.com/alibaba/COLA/network/dependents)
 [![GitHub issues](https://img.shields.io/github/issues/alibaba/COLA.svg)](https://github.com/alibaba/COLA/issues)
 [![GitHub Contributors](https://img.shields.io/github/contributors/alibaba/COLA)](https://github.com/alibaba/COLA/graphs/contributors)
-[![gitpod: Ready to Code](https://img.shields.io/badge/Gitpod-ready--to--code-green?label=gitpod&logo=gitpod&logoColor=white)](https://gitpod.io/#https://github.com/alibaba/COLA)
+[![gitpod: Ready to Code](https://img.shields.io/badge/Gitpod-ready%20to%20code-339933?label=gitpod&logo=gitpod&logoColor=white)](https://gitpod.io/#https://github.com/alibaba/COLA)
 
 <strong>COLA 是 Clean Object-Oriented and Layered Architecture的缩写，代表“整洁面向对象分层架构”。
-目前COLA已经发展到[COLA v4](https://blog.csdn.net/significantfrank/article/details/110934799)。</strong>
+目前COLA已经发展到[COLA v5](#版本迭代)。</strong>
 
 > - 想了解更多COLA信息，请关注微信公众号：  
-> ![qrcode_60.jpg](https://img-blog.csdnimg.cn/2020110314110321.png#pic_center)
+> <a href="#dummy"><img src="https://img-blog.csdnimg.cn/2020110314110321.png" width="25%" alt="qrcode" /></a>
 > - 想了解更多COLA背后的故事，请支持我的新书[《程序员的底层思维》](https://item.jd.com/13652002.html)
 
 COLA分为两个部分，COLA架构和COLA组件。
@@ -37,17 +37,17 @@ COLA分为两个部分，COLA架构和COLA组件。
 - 治理应用复杂度，降低系统熵值；
 - 从随心所欲的混乱状态，走向井井有条的有序状态。
 
-![archWhy](https://img-blog.csdnimg.cn/e27c22d706084ead900c8838326135f3.png)
+<a href="#dummy"><img src="https://img-blog.csdnimg.cn/e27c22d706084ead900c8838326135f3.png" alt="arch why" /></a>
 
 COLA架构就是为此而生，其核心职责就是定义良好的应用结构，提供最佳应用架构的最佳实践。通过不断探索，我们发现良好的分层结构，良好的包结构定义，可以帮助我们治理混乱不堪的业务应用系统。
 
-![cure](https://img-blog.csdnimg.cn/2020120918285068.png)
+<a href="#dummy"><img src="https://img-blog.csdnimg.cn/2020120918285068.png" alt="cure" /></a>
 
-经过多次迭代，我们定义出了相对稳定、可靠的应用架构：COLA v4
+经过多次迭代，我们定义出了相对稳定、可靠的应用架构：
 
-![cola](https://img-blog.csdnimg.cn/6549230c6723448fb3ab51ca74829e80.png)
+<a href="#dummy"><img src="https://img-blog.csdnimg.cn/6549230c6723448fb3ab51ca74829e80.png" alt="cola arch" /></a>
 
-## COLA Archetype
+## COLA Archetypes
 
 好的应用架构，都遵循一些共同模式，不管是六边形架构、洋葱圈架构、整洁架构、还是COLA架构，**都提倡以业务为核心，解耦外部依赖，分离业务复杂度和技术复杂度等**。
 
@@ -64,15 +64,15 @@ COLA架构区别于这些架构的地方，在于除了思想之外，我们还�
 
 这些功能组件被收拢在[`cola-components`目录](cola-components)下面。到目前为止，我们已经沉淀了以下组件：
 
-组件名称 | 功能 | 版本 | 依赖
------- | ---- | ---- | ----
-`cola-component-dto` | 定义了`DTO`格式，包括分页 | 1.0.0 |无
-`cola-component-exception` | 定义了异常格式，<br>主要有`BizException`和`SysException` | 1.0.0 |无
-`cola-component-statemachine` | 状态机组件 | 1.0.0 |无
-`cola-component-domain-starter` | `Spring`托管的领域实体组件 | 1.0.0 |无
-`cola-component-catchlog-starter` | 异常处理和日志组件 | 1.0.0 | `exception`<br>、`dto`组件
-`cola-component-extension-starter` | 扩展点组件 | 1.0.0 |无
-`cola-component-test-container` | 测试容器组件 | 1.0.0 |无
+组件名称 | 功能 | 依赖
+------ | ---- | ----
+`cola-component-dto` | 定义了`DTO`格式，包括分页 |无
+`cola-component-exception` | 定义了异常格式，<br>主要有`BizException`和`SysException` |无
+`cola-component-statemachine` | 状态机组件 | 无
+`cola-component-domain-starter` | `Spring`托管的领域实体组件 | 无
+`cola-component-catchlog-starter` | 异常处理和日志组件 | `exception`、`dto`组件
+`cola-component-extension-starter` | 扩展点组件 | 无
+`cola-component-test-container` | 测试容器组件 | 无
 
 # 三、如何使用COLA
 
@@ -88,14 +88,12 @@ mvn archetype:generate \
     -Dpackage=com.alibaba.demo \
     -DarchetypeArtifactId=cola-framework-archetype-web \
     -DarchetypeGroupId=com.alibaba.cola \
-    -DarchetypeVersion=4.3.1
+    -DarchetypeVersion=5.0.0
 ```
 
 命令执行成功的话，会看到如下的应用代码结构：
 
-![demo](https://img-blog.csdnimg.cn/20201209192258840.png)
-
-注：也可以使用阿里云的应用生成器：https://start.aliyun.com/bootstrap.html 生成cola应用。
+<a href="#dummy"><img src="https://img-blog.csdnimg.cn/20201209192258840.png" alt="demo struture" /></a>
 
 ## 2. 运行应用
 
@@ -114,10 +112,17 @@ mvn archetype:generate \
     -Dpackage=com.alibaba.demo \
     -DarchetypeArtifactId=cola-framework-archetype-service \
     -DarchetypeGroupId=com.alibaba.cola \
-    -DarchetypeVersion=4.3.1
+    -DarchetypeVersion=5.0.0
 ```
 
 # 版本迭代
+
+## 5.0.0 版本
+1. 支持jdk17和SpringBoot 3.x
+2. 增加cola-archetype-light，支持新的基于package轻量级分层架构
+3. 增加cola-component-unittest组件，支持[新的单元测试](https://blog.csdn.net/significantfrank/article/details/137495244)
+4. 增强cola-component-test-container组件，支持Junit5的Extension
+
 
 ## 4.0.0 版本
 
